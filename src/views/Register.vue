@@ -1,19 +1,42 @@
 <template>
   <div class="page-container">
-    <h1>用户注册</h1>
+    <el-divider content-position="left">
+      <h1>用户注册</h1>
+    </el-divider>
+
     <el-form
       :label-position="labelPosition"
       label-width="100px"
       :model="userInfo"
     >
       <el-form-item label="姓名">
-        <el-input class="user-info_name" v-model="userInfo.name"></el-input>
+        <el-input
+          type="text"
+          class="user-info_name"
+          v-model="userInfo.name"
+        ></el-input>
       </el-form-item>
       <el-form-item label="邮箱">
-        <el-input class="user-info_email" v-model="userInfo.email"></el-input>
+        <el-input
+          type="text"
+          class="user-info_email"
+          v-model="userInfo.email"
+        ></el-input>
       </el-form-item>
       <el-form-item label="电话">
-        <el-input class="user-info_tel" v-model="userInfo.tel"></el-input>
+        <el-input
+          type="phone"
+          class="user-info_tel"
+          v-model="userInfo.tel"
+          :maxlength="11"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="密码">
+        <el-input
+          type="password"
+          class="user-info_pass"
+          v-model="userInfo.pass"
+        ></el-input>
       </el-form-item>
 
       <div style="text-align: center">
@@ -38,6 +61,7 @@ export default {
         name: "",
         email: "",
         tel: "",
+        pass: "",
       },
       isDisabled: false,
     };
@@ -56,11 +80,13 @@ export default {
         .post("/api/userInfo/register", { ...this.userInfo })
         .then((res) => {
           this.isDisabled = false;
-          this.$message.success(`恭喜：${res.data.name} 注册成功`);
+          const { name, email } = res.data;
+          this.$message.success(`恭喜：${name} 注册成功`);
+
+          this.$router.push(`/login?email=${email}`);
         })
         .catch(() => {
           this.isDisabled = false;
-          this.$message.error("注册失败");
         });
     },
   },
