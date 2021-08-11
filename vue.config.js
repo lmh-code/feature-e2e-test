@@ -1,34 +1,20 @@
 module.exports = {
-  publicPath: "/", // 基本路径
-  // assetsDir: Version + '/static', // 此处不为空的的话要在chainWebpack中配置config.plugin('copy')
-  outputDir: "dist", // 输出文件目录
-  indexPath: "index.html", // html输出路径
-  lintOnSave: false,
-  productionSourceMap: false, // 关闭生产环境的 source map
-  pages: {
-    index: {
-      // page 的入口
-      entry: "src/main.js",
-      // 模板来源
-      template: "public/index.html",
-      // 在 dist/index.html 的输出
-      filename: "index.html",
-      // 当使用 title 选项时，
-      // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
-      title: "Index Page",
-      // 在这个页面中包含的块，默认情况下会包含
-      // 提取出来的通用 chunk 和 vendor chunk。
-      chunks: ["chunk-vendors", "chunk-common", "index"],
-    },
+  publicPath: "/", // 根域上下文目录
+  outputDir: "dist", // 构建输出目录
+  assetsDir: "assets", // 静态资源目录 (js, css, img, fonts)
+  lintOnSave: false, // 是否开启eslint保存检测，有效值：ture | false | 'error'
+  runtimeCompiler: true, // 运行时版本是否需要编译
+  transpileDependencies: [], // 默认babel-loader忽略mode_modules，这里可增加例外的依赖包名
+  productionSourceMap: true, // 是否在构建生产包时生成 sourceMap 文件，false将提高构建速度
+  filenameHashing: true,
+  chainWebpack: (config) => {
+    //打包配置输出文件
+    config.output.filename("js/[name].[hash].js").end();
+    config.output.chunkFilename("js/[name].[hash].js").end();
   },
   devServer: {
     port: 8082,
-    overlay: {
-      warnings: false,
-      errors: false,
-    },
     open: true,
     hot: true,
-    compress: true,
   },
 };
