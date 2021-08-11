@@ -14,7 +14,12 @@ module.exports = {
   },
   devServer: {
     port: 8082,
+    overlay: {
+      warnings: false,
+      errors: false,
+    },
     open: true,
     hot: true,
+    compress: true,
   },
 };
