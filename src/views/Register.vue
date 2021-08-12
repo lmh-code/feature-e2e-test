@@ -66,6 +66,7 @@ export default {
       isDisabled: false,
     };
   },
+
   methods: {
     registerHandle() {
       // const successMsg = `注册成功：<br/> 姓名：${this.userInfo.name}<br/> 邮箱：${this.userInfo.email}<br/> 电话：${this.userInfo.tel}<br/>`;

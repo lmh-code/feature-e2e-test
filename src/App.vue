@@ -39,6 +39,7 @@ export default {
   watch: {
     $route: {
       deep: true,
+      immediate: true,
       handler: function () {
         this.setDefaultActive();
       },
@@ -49,6 +50,7 @@ export default {
   },
   methods: {
     setDefaultActive() {
+      console.log("this.$route.path:", this.$route.path);
       this.activeIndex = this.$route.path;
     },
   },

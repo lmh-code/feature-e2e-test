@@ -44,21 +44,33 @@ export default {
       isDisabled: false,
     };
   },
+  created() {
+    const userName = localStorage.getItem("userName");
+    const isLogin = localStorage.getItem("isLogin");
+    if (isLogin) {
+      this.$message.warning(`用户 ${userName} 处于登录状态`);
+      this.$router.replace("/home");
+    }
+  },
   methods: {
     loginHandle() {
       this.isDisabled = true;
       this.$http
-        .post("/api/userInfo/register", { ...this.userInfo })
+        .post("/api/userInfo/login", { ...this.userInfo })
         .then((res) => {
           this.isDisabled = false;
-          const { name } = res.data;
+          const { name, email, tel } = res.data;
           this.$message.success(`恭喜：${name} 登录成功`);
+
+          localStorage.setItem("isLogin", true);
+          localStorage.setItem("userName", name);
+          localStorage.setItem("email", email);
+          localStorage.setItem("tel", tel);
 
           this.$router.push(`/home`);
         })
         .catch(() => {
           this.isDisabled = false;
-          this.$message.error("登录失败");
         });
     },
   },

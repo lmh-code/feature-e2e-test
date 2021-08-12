@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="page-container">
     <img alt="Vue logo" class="logo-img" src="../assets/logo.png" />
     <h1>欢迎使用vue</h1>
     <HelloWorld></HelloWorld>
@@ -28,7 +28,7 @@ export default {
 };
 </script>
 <style scoped lang="less">
-.home {
+.page-container {
   text-align: center;
   img {
     margin: 50px 0;
