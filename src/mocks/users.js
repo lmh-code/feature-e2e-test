@@ -13,6 +13,20 @@ export default {
   },
 
   /**
+   * @description: 获取用户信息
+   */
+  "post|/api/userInfo/deleteUsers": (req) => {
+    const params = JSON.parse(req.body);
+    const index = userList.findIndex((item) => item.id === params.id);
+    userList.splice(index, 1);
+    return {
+      code: 200,
+      message: "success",
+      data: userList[index],
+    };
+  },
+
+  /**
    * @description: 用户注册
    */
   "post|/api/userInfo/register": (req) => {

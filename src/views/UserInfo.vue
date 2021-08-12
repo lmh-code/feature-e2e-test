@@ -75,6 +75,7 @@ export default {
       this.isDisabled = true;
       setTimeout(() => {
         this.$message.success("退出登录成功");
+        this.$store.dispatch("SET_USERNAME", "-");
         this.isDisabled = false;
         this.$router.push("/login");
       }, 2000);

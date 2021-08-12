@@ -1,12 +1,17 @@
 describe("测试App.vue", () => {
-  it("Visits the app root url", () => {
-    // 没什么可测的
+  beforeEach(() => {
     cy.visit("/");
+  });
 
+  it("Visits the app root url", () => {
     cy.root().should("match", "html");
   });
 
   it("测试cy.get()", () => {
     cy.get(".router-link.demo").click();
+  });
+
+  it("测试菜单数量", () => {
+    cy.get(".router-link").should("have.length", 5);
   });
 });

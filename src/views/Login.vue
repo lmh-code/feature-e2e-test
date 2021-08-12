@@ -48,7 +48,7 @@ export default {
     const userName = localStorage.getItem("userName");
     const isLogin = localStorage.getItem("isLogin");
     if (isLogin) {
-      this.$message.warning(`用户 ${userName} 处于登录状态`);
+      this.$message.warning(`用户 ${userName} 处于登录状态，无需再次登录。`);
       this.$router.replace("/home");
     }
   },
@@ -66,6 +66,8 @@ export default {
           localStorage.setItem("userName", name);
           localStorage.setItem("email", email);
           localStorage.setItem("tel", tel);
+
+          this.$store.dispatch("SET_USERNAME", name);
 
           this.$router.push(`/home`);
         })

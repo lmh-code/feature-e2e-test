@@ -22,6 +22,19 @@
       <el-menu-item index="/about">
         <router-link class="router-link" to="/about">个人中心</router-link>
       </el-menu-item>
+      <el-menu-item index="/users">
+        <router-link class="router-link" to="/users">用户列表</router-link>
+      </el-menu-item>
+
+      <div class="nav-user-info">
+        <span class="nav-user-info_name">
+          {{ userName || "-" }}
+        </span>
+        <div class="split"></div>
+        <el-button id="loginOutBtn" type="text" @click="loginOut">
+          退出登录
+        </el-button>
+      </div>
     </el-menu>
 
     <el-main>
@@ -35,6 +48,11 @@ export default {
     return {
       activeIndex: "",
     };
+  },
+  computed: {
+    userName() {
+      return this.$store.state.userName;
+    },
   },
   watch: {
     $route: {
@@ -50,8 +68,13 @@ export default {
   },
   methods: {
     setDefaultActive() {
-      console.log("this.$route.path:", this.$route.path);
       this.activeIndex = this.$route.path;
+    },
+    loginOut() {
+      localStorage.clear();
+      this.$message.success("退出登录成功");
+      this.$store.dispatch("SET_USERNAME", "-");
+      this.$router.push("/login");
     },
   },
 };
@@ -62,6 +85,24 @@ export default {
 .el-menu-demo {
   display: flex;
   justify-content: center;
+  position: relative;
+  .nav-user-info {
+    height: 100%;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    .nav-user-info_name {
+      color: #ffffff;
+    }
+    .split {
+      margin: 0 10px;
+      height: 20px;
+      width: 1px;
+      background-color: #ffffff;
+    }
+  }
 }
 .router-link {
   display: inline-block;

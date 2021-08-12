@@ -1,5 +1,5 @@
 describe("测试Home.vue", () => {
-  it("visit the home root url", () => {
+  beforeEach(() => {
     cy.visit("/home");
   });
 

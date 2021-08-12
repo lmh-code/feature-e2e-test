@@ -20,20 +20,18 @@ export const userList = [
   },
   {
     id: 2,
-    name: "小豪子",
-
+    name: "嘎嘎",
     email: "xiaohaozi@longfor.com",
     tel: "13126972120",
     pass: "admin22@Zz",
     sex: 1, // 1 男 2 女
     hobby: [3], // 1 羽毛球 2 乒乓球 3 游泳 4 篮球 5 敲代码
-
     age: "23",
     job: "前端工程师",
   },
   {
     id: 3,
-    name: "大豪哥",
+    name: "哈哈",
     email: "dahaoge@longfor.com",
     tel: "15826972120",
     pass: "admin33@Zz",
@@ -51,6 +49,17 @@ export const userList = [
     sex: 2, // 1 男 2 女
     hobby: [1], // 1 羽毛球 2 乒乓球 3 游泳 4 篮球 5 敲代码
     age: "18",
-    job: "产品",
+    job: "产品经理啊哈哈哈",
+  },
+  {
+    id: 5,
+    name: "呼呼",
+    email: "huhu@longfor.com",
+    tel: "13526973620",
+    pass: "admin44@Zz",
+    sex: 2, // 1 男 2 女
+    hobby: [1], // 1 羽毛球 2 乒乓球 3 游泳 4 篮球 5 敲代码
+    age: "18",
+    job: "产品经理啊哈哈哈",
   },
 ];

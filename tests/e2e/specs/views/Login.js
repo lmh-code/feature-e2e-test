@@ -1,6 +1,9 @@
 describe("测试Login.vue", () => {
-  it("h1标签内容", () => {
+  beforeEach(() => {
     cy.visit("/login");
+  });
+
+  it("h1标签内容", () => {
     cy.contains("h1", "用户登录");
   });
 

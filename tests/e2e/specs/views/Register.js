@@ -1,6 +1,9 @@
 describe("测试Register.vue", () => {
-  it("h1标签内容", () => {
+  beforeEach(() => {
     cy.visit("/register");
+  });
+
+  it("h1标签内容", () => {
     cy.contains("h1", "用户注册");
   });
 
